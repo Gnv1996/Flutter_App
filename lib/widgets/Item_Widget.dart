@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:my_app/model/catalog.dart'; // Make sure the import path is correct
+
+class ItemWidget extends StatelessWidget {
+  final Item item;
+
+  const ItemWidget({Key? key, required this.item})
+      : assert(item != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        child: ListTile(
+      onTap: () => {print("buy now")},
+      leading: Image.asset("assets/images/phone.jpg"),
+      title: Text(item.name),
+      subtitle: Text(item.desc),
+      trailing: Text(
+        "\$${item.price}",
+        textScaleFactor: 1.5,
+        style: TextStyle(color: Colors.deepPurple),
+      ),
+    ));
+  }
+}
