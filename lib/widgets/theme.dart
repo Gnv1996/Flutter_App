@@ -21,12 +21,18 @@ class MyTheme {
             fontFamily: GoogleFonts.lato().fontFamily,
           ),
         ),
+
+        // Define other custom colors or configurations as needed
       );
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
         brightness: Brightness.dark,
+        // Define dark theme colors if needed
       );
 
   static Color creamColor = Color(0xfff5f5f5);
   static Color darkBluishColor = Color(0xff403b58);
+  static Color accentColor = Color(0xff403b58); // Define your accent color here
+  static Color backgroundColor =
+      Color(0xfff5f5f5); // Define your background color here
 }

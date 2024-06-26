@@ -7,6 +7,8 @@ import 'widgets/theme.dart';
 import './pages/profileScreen.dart';
 import './pages/registration_page.dart';
 import './pages/contactForm.dart';
+import './pages/faq_page.dart';
+import './pages/chat_message.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +29,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.profileRoute: (context) => ProfileScreen(),
         MyRoutes.signUpRoute: (context) => RegistrationPage(),
         MyRoutes.contactRoute: (context) => ContactForm(),
+        MyRoutes.faqRoute: (context) => FAQPage(),
+        MyRoutes.chatRoute: (context) => ChatScreen(),
         // Add more routes as needed
       },
     );

@@ -36,6 +36,22 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(Icons.chat),
+            title: Text('Chat'),
+            onTap: () {
+              Navigator.popAndPushNamed(context,
+                  MyRoutes.chatRoute); // Use popAndPushNamed to navigate
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.format_quote),
+            title: Text('FAQ S'),
+            onTap: () {
+              Navigator.popAndPushNamed(context,
+                  MyRoutes.faqRoute); // Use popAndPushNamed to navigate
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.contact_support),
             title: Text('Contact'),
             onTap: () {
