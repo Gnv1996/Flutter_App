@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/model/catalog.dart'; // Replace with your catalog model
-import '../widgets/theme.dart'; // Replace with your theme file
+import '../widgets/theme.dart';
+import '../model/catalog.dart';
+// Replace with your theme file
 
 class ItemDetailPage extends StatefulWidget {
   final Item item;
@@ -59,8 +61,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                 child: Image.asset(
                   'assets/images/phone.jpg',
                   fit: BoxFit.cover,
-                  height: MediaQuery.of(context).size.height *
-                      0.5, // Set image height dynamically
+                  height: MediaQuery.of(context).size.height * 0.5,
                 ),
               ),
             ),
