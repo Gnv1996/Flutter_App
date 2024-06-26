@@ -37,122 +37,154 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
       appBar: AppBar(
         title: Text('Item Details'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Larger Image
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.brown.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: Offset(0, 3),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Larger Image
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.brown.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/images/phone.jpg',
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height *
+                      0.5, // Set image height dynamically
                 ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                'assets/images/phone.jpg',
-                fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height *
-                    0.5, // Set image height dynamically
               ),
             ),
-          ),
-          SizedBox(height: 16),
-          // Title
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              widget.item.name,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+            SizedBox(height: 16),
+            // Title
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                widget.item.name,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 8),
-          // Description
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              widget.item.desc,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
+            SizedBox(height: 8),
+            // Description
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                widget.item.desc,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 16),
-          // Option Selector
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Quantity:',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+            SizedBox(height: 8),
+            // Detailed Description
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                widget.item.desc1,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
                 ),
-                DropdownButton<String>(
-                  value: selectedOption,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      selectedOption = newValue!;
-                      selectedOptionPrice = options
-                          .firstWhere((option) => option.name == selectedOption)
-                          .price;
-                    });
-                  },
-                  items: options.map((Option option) {
-                    return DropdownMenuItem<String>(
-                      value: option.name,
-                      child: Text(option.name),
-                    );
-                  }).toList(),
-                ),
-              ],
+              ),
             ),
-          ),
-          // Spacer to push content to the top
-          Spacer(),
-          // Bottom Row with Price and Buy Now Button
-          Container(
-            padding: EdgeInsets.all(16),
-            color: Colors.grey[200],
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Left side: Price
-                Text(
-                  "₹${(widget.item.price * selectedOptionPrice).toStringAsFixed(2)}",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            SizedBox(height: 16),
+            // Option Selector
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Quantity:',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-                // Right side: Buy Now Button
-                ElevatedButton(
-                  onPressed: () {
-                    // Implement your buy now functionality here
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(MyTheme.darkBluishColor),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                  DropdownButton<String>(
+                    value: selectedOption,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedOption = newValue!;
+                        selectedOptionPrice = options
+                            .firstWhere(
+                                (option) => option.name == selectedOption)
+                            .price;
+                      });
+                    },
+                    items: options.map((Option option) {
+                      return DropdownMenuItem<String>(
+                        value: option.name,
+                        child: Text(option.name),
+                      );
+                    }).toList(),
                   ),
-                  child: Text('Buy Now'),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 16),
+            // Spacer to push content to the top
+            SizedBox(height: 16),
+            // Bottom Row with Price and Buy Now Button
+            Container(
+              padding: EdgeInsets.all(16),
+              color: Colors.grey[200],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Left side: Price
+                  Text(
+                    "₹${(widget.item.price * selectedOptionPrice).toStringAsFixed(2)}",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // Right side: Buy Now Button
+                  ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Purchase Confirmation'),
+                            content: Text('Thank you for your purchase!'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('OK'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(MyTheme.darkBluishColor),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                    ),
+                    child: Text('Buy Now'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
